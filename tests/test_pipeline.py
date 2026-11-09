@@ -122,6 +122,20 @@ def test_annotate_crosswalk_and_genes(synthetic, tmp_path):
 def test_slugify():
     assert slugify("Corneal Stromal Keratocytes - C1") == "corneal-stromal-keratocytes-c1"
     assert slugify("NK/T Cell") == "nk-t-cell"
+    labels = [
+        "AII",
+        "AII*",
+        "NK cells CD16+",
+        "NK cells CD16-",
+        "OFF-SAC",
+        "OFF-SAC*",
+        "Astro_ON_AFF3+",
+        "Schwann-my",
+        "Epi-TDC/PMC",
+    ]
+    slugs = [slugify(x) for x in labels]
+    assert len(set(slugs)) == len(labels), slugs
+    assert slugify("NK cells CD16-") == "nk-cells-cd16-neg" and slugify("OFF-SAC") == "off-sac"
 
 
 def test_dirname_of():

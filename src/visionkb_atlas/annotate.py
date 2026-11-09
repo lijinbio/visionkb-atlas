@@ -92,6 +92,10 @@ def map_groups(groups: pd.DataFrame, atlas: Atlas, xw: pd.DataFrame) -> pd.DataF
     g[["cell_type_id", "parent_cl", "mapping_predicate", "mapping_object", "mapping_confidence", "mapping_source"]] = (
         pd.DataFrame(out, index=g.index)
     )
+    cs = g[g["cell_type_id"].str.startswith("visionkb:cs-") & (g["level"] != "region_majorclass")]
+    clash = cs.groupby("cell_type_id")["group_label"].nunique()
+    if (clash > 1).any():
+        raise ValueError(f"CellState id collision (distinct labels, same slug): {sorted(clash[clash > 1].index)}")
     return g
 
 

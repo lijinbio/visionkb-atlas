@@ -30,8 +30,12 @@ def work_dir() -> Path:
 
 
 def slugify(label: str) -> str:
-    """Lower-case slug used in CellState ids: runs of non-alphanumerics become one hyphen."""
-    s = re.sub(r"[^0-9a-zA-Z]+", "-", str(label)).strip("-").lower()
+    """Lower-case slug used in CellState ids. Marker signs are kept apart so that distinct labels stay distinct:
+    '+' -> 'pos', a trailing '-' (e.g. 'CD16-') -> 'neg', '*' -> 'star'; other runs of non-alphanumerics -> one hyphen.
+    (Collisions that remain are detected in annotate.map_groups.)"""
+    s = str(label).replace("+", " pos ").replace("*", " star ")
+    s = re.sub(r"(?<=[0-9A-Za-z])-(?=$|[^0-9A-Za-z])", " neg ", s)
+    s = re.sub(r"[^0-9a-zA-Z]+", "-", s).strip("-").lower()
     if not s:
         raise ValueError(f"label {label!r} has no slug")
     return s
