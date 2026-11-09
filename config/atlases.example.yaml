@@ -1,0 +1,239 @@
+# VisionKB atlas column map example; copy to $VISIONKB_DATA_ROOT/config/atlases.yaml and set real paths (contracts §2). Region UBERON ids verified with OLS on 2026-11-09.
+# Peripheral retina: UBERON:0013682 'peripheral region of retina'. Regions without an id (mixed dissections) get none.
+atlas_version: heca-2026.05
+atlases:
+- access_level: lab
+  assay: EFO:0008913
+  counts_source: X
+  dataset_id: visionkb:ds-iris-scrna
+  donor_col: donorid
+  h5ad: /path/to/HECA/Iris/rna/h5ad/Iris_scRNA_allcells.h5ad
+  majorclass_col: majorclass
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0001769
+  title: HECA iris, single-cell RNA-seq
+- access_level: lab
+  assay: EFO:0009809
+  counts_source: X
+  dataset_id: visionkb:ds-iris-snrna
+  donor_col: donorid
+  h5ad: /path/to/HECA/Iris/rna/h5ad/Iris_snRNA_allcells.h5ad
+  majorclass_col: majorclass
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0001769
+  title: HECA iris, single-nucleus RNA-seq
+- access_level: lab
+  assay: EFO:0008913
+  counts_source: X
+  dataset_id: visionkb:ds-lens-scrna
+  donor_col: donorid
+  h5ad: /path/to/HECA/Lens/rna/h5ad/Lens_scRNA_allcells.h5ad
+  majorclass_col: cell_type
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0000965
+  title: HECA lens, single-cell RNA-seq
+- access_level: lab
+  assay: EFO:0009809
+  counts_source: X
+  dataset_id: visionkb:ds-lens-snrna
+  donor_col: donorid
+  h5ad: /path/to/HECA/Lens/rna/h5ad/Lens_snRNA_allcells.h5ad
+  majorclass_col: cell_type
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0000965
+  title: HECA lens, single-nucleus RNA-seq
+- access_level: lab
+  assay: EFO:0008913
+  celltype_col: celltype
+  counts_source: X
+  dataset_id: visionkb:ds-ocularsurface-scrna
+  donor_col: donor
+  h5ad: /path/to/HECA/OcularSurface/rna/h5ad/OcularSurface_scRNA_allcells.h5ad
+  label_maps:
+    region:
+      Cornea: cornea
+      Cornea/Conjunctiva: cornea/conjunctiva
+      Cornea_Endothelium: cornea
+      Cornea_Epithelium: cornea
+      Cornea_Stroma: cornea
+      Corneal Limbus: limbus
+      Corneoscleral tissues: corneoscleral
+      Limbus: limbus
+      sclera: sclera
+  majorclass_col: majorclass
+  region_col: tissue
+  region_uberon:
+    cornea: UBERON:0000964
+    limbus: UBERON:0006761
+    sclera: UBERON:0001773
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0000964
+  - UBERON:0006761
+  - UBERON:0001811
+  - UBERON:0001773
+  title: HECA ocular surface (cornea, limbus, conjunctiva, sclera), single-cell RNA-seq
+- access_level: lab
+  assay: EFO:0009809
+  celltype_col: celltype
+  counts_source: X
+  dataset_id: visionkb:ds-ocularsurface-snrna
+  donor_col: donor
+  h5ad: /path/to/HECA/OcularSurface/rna/h5ad/OcularSurface_snRNA_allcells.h5ad
+  label_maps:
+    region:
+      Cornea: cornea
+      Cornea sclera wedge: corneoscleral
+      Sclera: sclera
+  majorclass_col: majorclass
+  region_col: tissue
+  region_uberon:
+    cornea: UBERON:0000964
+    sclera: UBERON:0001773
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0000964
+  - UBERON:0006761
+  - UBERON:0001811
+  - UBERON:0001773
+  title: HECA ocular surface (cornea, limbus, conjunctiva, sclera), single-nucleus RNA-seq
+- access_level: lab
+  assay: EFO:0009809
+  celltype_col: celltype
+  counts_source: X
+  dataset_id: visionkb:ds-ononh-snrna
+  donor_col: donor
+  h5ad: /path/to/HECA/ONONH/rna/h5ad/ON_snRNA_allcells.h5ad
+  majorclass_col: majorclass
+  region_col: tissue
+  region_uberon:
+    'ON': UBERON:0000941
+    ONH: UBERON:0001783
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0000941
+  - UBERON:0001783
+  title: HECA optic nerve and optic nerve head, single-nucleus RNA-seq
+- access_level: lab
+  assay: EFO:0008913
+  counts_source: X
+  dataset_id: visionkb:ds-hrca-scrna
+  donor_col: donor
+  h5ad: /path/to/HECA/Retina/rna/h5ad/HRCA_scRNA_allcells.h5ad
+  majorclass_col: majorclass
+  region_col: tissue
+  region_uberon: &id001
+    fovea: UBERON:0001786
+    macular: UBERON:0000053
+    periphery: UBERON:0013682
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0000966
+  title: HECA Human Retina Cell Atlas, single-cell RNA-seq
+- access_level: lab
+  assay: EFO:0009809
+  celltype_col: celltype
+  counts_source: X
+  dataset_id: visionkb:ds-hrca-snrna
+  donor_col: donor
+  h5ad: /path/to/HECA/Retina/rna/h5ad/HRCA_snRNA_allcells.h5ad
+  majorclass_col: majorclass
+  region_col: tissue
+  region_uberon: *id001
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0000966
+  title: HECA Human Retina Cell Atlas, single-nucleus RNA-seq
+- access_level: lab
+  assay: EFO:0008913
+  celltype_col: subclass
+  counts_source: X
+  dataset_id: visionkb:ds-rpechoroid-scrna
+  donor_col: Donor
+  h5ad: /path/to/HECA/RPEChoroid/rna/h5ad/RPEChoroid_scRNA_allcells.h5ad
+  label_maps:
+    region:
+      Macular: macula
+      Periphery: periphery
+      Unknown: ''
+      macula: macula
+  majorclass_col: majorclass
+  region_col: Region
+  region_uberon:
+    macula: UBERON:0000053
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0001782
+  - UBERON:0001776
+  title: HECA RPE and choroid, single-cell RNA-seq
+- access_level: lab
+  assay: EFO:0009809
+  celltype_col: celltype
+  counts_source: X
+  dataset_id: visionkb:ds-rpechoroid-snrna
+  donor_col: Donor
+  h5ad: /path/to/HECA/RPEChoroid/rna/h5ad/RPEChoroid_snRNA_allcells.h5ad
+  label_maps:
+    region:
+      Macular: macula
+      Peripheral: periphery
+  majorclass_col: majorclass
+  region_col: Region
+  region_uberon:
+    macula: UBERON:0000053
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0001782
+  - UBERON:0001776
+  title: HECA RPE and choroid, single-nucleus RNA-seq
+- access_level: lab
+  assay: EFO:0008913
+  celltype_col: celltype
+  counts_source: X
+  dataset_id: visionkb:ds-tmcb-scrna
+  donor_col: donor
+  h5ad: /path/to/HECA/TMCB/rna/h5ad/TMCB_scRNA_allcells.h5ad
+  majorclass_col: majorclass
+  region_col: tissue
+  region_uberon:
+    CB: UBERON:0001775
+    TM: UBERON:0005969
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0005969
+  - UBERON:0001775
+  title: HECA trabecular meshwork and ciliary body, single-cell RNA-seq
+- access_level: lab
+  assay: EFO:0009809
+  celltype_col: celltype
+  counts_source: X
+  dataset_id: visionkb:ds-tmcb-snrna
+  donor_col: donor
+  h5ad: /path/to/HECA/TMCB/rna/h5ad/TMCB_snRNA_allcells.h5ad
+  majorclass_col: majorclass
+  region_col: tissue
+  region_uberon:
+    CB: UBERON:0001775
+    TM: UBERON:0005969
+  sample_col: sampleid
+  species: NCBITaxon:9606
+  tissue:
+  - UBERON:0005969
+  - UBERON:0001775
+  title: HECA trabecular meshwork and ciliary body, single-nucleus RNA-seq

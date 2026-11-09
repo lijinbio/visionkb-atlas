@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "visionkb-atlas"
+version = "0.1.0"
+description = "VisionKB atlas store: h5ad to TileDB-SOMA, round-trip validation, streamed expression summaries, dataset registry"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [{ name = "Rui Chen Lab, University of California, Irvine" }]
+dependencies = [
+  "tiledbsoma>=2.3,<2.4",
+  "anndata>=0.13,<0.14",
+  "h5py>=3.12",
+  "numpy>=2",
+  "pandas>=2.2,<3",
+  "pyarrow>=18",
+  "pyyaml>=6",
+  "scipy>=1.13",
+]
+
+[project.scripts]
+visionkb-atlas = "visionkb_atlas.cli:main"
+
+[project.urls]
+Repository = "https://github.com/lijinbio/visionkb-atlas"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.16", "pre-commit>=4"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "RUF"]
+ignore = ["E501", "S101", "S603", "S607", "S310"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

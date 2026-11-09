@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Example: convert + validate one atlas on a Slurm cluster. Peak RSS is ~9-15 GB regardless of file size (blocks of 1e8 values);
+# pad memory on preemptible partitions. Usage: sbatch convert.sbatch.example <dataset-slug>
+#SBATCH -J visionkb-atlas -p <partition> -A <account> -c 4 --mem=48G -t 24:00:00 --requeue
+#SBATCH -o out_slurm/%x_%j.out -e out_slurm/%x_%j.err
+set -euo pipefail
+export VISIONKB_DATA_ROOT=/path/to/share/visionkb      # published SOMA stores, summaries, config/atlases.yaml
+export VISIONKB_ATLAS_WORK=/path/to/work/atlas         # scratch for partial writes
+visionkb-atlas convert "$1" && visionkb-atlas validate "$1"
